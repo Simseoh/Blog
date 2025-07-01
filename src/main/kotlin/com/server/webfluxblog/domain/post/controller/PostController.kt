@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 import java.security.Principal
 
 @RestController
-@RequestMapping("/post")
+@RequestMapping("/posts")
 @Tag(name = "Post")
 class PostController(private val postService: PostService) {
 

@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/comment")
+@RequestMapping("/comments")
 @Tag(name = "Comment")
 class CommentController(
     val commentService: CommentService

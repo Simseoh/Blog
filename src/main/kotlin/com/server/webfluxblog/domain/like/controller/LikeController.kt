@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 import java.security.Principal
 
 @RestController
-@RequestMapping("/like")
+@RequestMapping("/likes")
 @Tag(name = "Like")
 class LikeController(
     private val likeService: LikeService
