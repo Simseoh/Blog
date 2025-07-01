@@ -15,9 +15,9 @@ class AnnouncementController(
     private val announcementService: AnnouncementService
 ) {
     @Operation(summary = "공지사항 게시")
-    @PostMapping("/announcements")
+    @PostMapping
     suspend fun createAnnouncement(@RequestBody request: AnnouncementRequest): AnnouncementEntity = announcementService.createAnnouncement(request)
     @Operation(summary = "공지사항 조회")
-    @GetMapping("/announcements")
+    @GetMapping
     fun getAnnouncements(): Flow<AnnouncementEntity>? = announcementService.getAnnouncements()
 }
