@@ -9,8 +9,6 @@ import com.server.webfluxblog.global.security.jwt.property.JwtProperties
 import com.server.webfluxblog.global.security.jwt.type.JwtType
 import io.jsonwebtoken.Jwts
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.security.core.userdetails.UserDetailsService
 import java.nio.charset.StandardCharsets
 import java.util.*
 import javax.crypto.SecretKey

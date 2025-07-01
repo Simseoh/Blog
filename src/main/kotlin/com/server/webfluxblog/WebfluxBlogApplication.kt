@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
 @SpringBootApplication
 @ConfigurationPropertiesScan
 @EnableTransactionManagement
-@EnableConfigurationProperties
 class WebfluxBlogApplication
 
 fun main(args: Array<String>) {

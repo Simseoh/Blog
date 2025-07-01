@@ -1,18 +1,15 @@
 package com.server.webfluxblog.global.config
 
-import com.fasterxml.jackson.databind.DeserializationFeature
 import com.server.webfluxblog.global.security.jwt.handle.CustomAuthenticationDenyHandle
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.server.webfluxblog.global.security.jwt.handle.CustomAuthenticationEntryPoint
 import com.server.webfluxblog.global.security.jwt.filter.JwtAuthenticationWebFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
-import org.springframework.security.authorization.AuthorizationDecision
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity
 import org.springframework.security.config.web.server.SecurityWebFiltersOrder
 import org.springframework.security.config.web.server.ServerHttpSecurity

@@ -4,7 +4,6 @@ import com.server.webfluxblog.domain.user.domain.entity.UserEntity
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.stereotype.Component
 
 class CustomUserDetails(
     val user: UserEntity

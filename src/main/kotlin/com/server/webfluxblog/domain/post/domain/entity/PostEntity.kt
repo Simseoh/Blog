@@ -1,4 +1,4 @@
-package com.server.webfluxblog.domain.blog.domain.entity
+package com.server.webfluxblog.domain.post.domain.entity
 
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.Id

@@ -4,10 +4,7 @@ import com.server.webfluxblog.domain.user.domain.entity.UserEntity
 import com.server.webfluxblog.domain.user.repository.UserRepository
 import com.server.webfluxblog.global.security.holder.SecurityHolder
 import kotlinx.coroutines.reactor.awaitSingleOrNull
-import lombok.RequiredArgsConstructor
-import org.springdoc.core.service.SecurityService
 import org.springframework.security.core.context.ReactiveSecurityContextHolder
-import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Component
 
 @Component
