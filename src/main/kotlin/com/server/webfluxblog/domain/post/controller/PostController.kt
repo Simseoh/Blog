@@ -16,21 +16,21 @@ import java.security.Principal
 class PostController(private val postService: PostService) {
 
     @Operation(summary = "게시물 게시")
-    @PostMapping("/posts")
+    @PostMapping
     suspend fun createPost(@RequestBody request: CreatePostRequest) = postService.createPost(request)
 
     @Operation(summary = "게시물 상세 조회")
-    @GetMapping("/posts/{postId}")
+    @GetMapping("/{postId}")
     suspend fun getPostById(@PathVariable postId: Long) = postService.findPostById(postId)
 
     @Operation(summary = "게시물 전체 조회")
-    @GetMapping("/posts/recent")
+    @GetMapping("/recent")
     fun getRecentPosts(): Flow<PostEntity>? = postService.getRecentPosts()
     @Operation(summary = "트렌딩게시물 조회")
-    @GetMapping("/posts/trending")
+    @GetMapping("/trending")
     suspend fun getTrendingPosts(): Flow<PostEntity> = postService.getTrendingPosts()
     @Operation(summary = "게시물 검색")
-    @GetMapping("/posts/search")
+    @GetMapping("/search")
     fun searchPosts(@RequestParam query: String): Flow<PostEntity> = postService.searchPosts(query)
 
     @Operation(summary = "피드 조회")
