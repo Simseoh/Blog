@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface NotificationRepository : CoroutineCrudRepository<NotificationEntity, Long> {
-    fun findByUserIdAndIsReadFalse(userId: Long): Flow<NotificationEntity>?
+    fun findByUserIdAndIsReadFalse(userId: Long): Flow<NotificationEntity>
 }

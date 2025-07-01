@@ -29,10 +29,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.8.0")
 
-    implementation("org.springframework.data:spring-data-r2dbc:3.2.0")
-    implementation("org.springframework.data:spring-data-commons:3.2.0")
-    implementation("org.springframework.data:spring-data-relational:3.2.0")
-    implementation("org.springframework.data:spring-data-keyvalue:3.2.0")
+
     implementation("org.apache.lucene:lucene-core:9.11.0")
     implementation("org.apache.lucene:lucene-queryparser:9.11.0")
     implementation("org.apache.lucene:lucene-analysis-common:9.11.0")
@@ -41,10 +38,8 @@ dependencies {
     implementation("org.projectlombok:lombok")
     testImplementation("org.springframework.security:spring-security-test")
 
-    // MacOS용 Netty DNS (M1/M2 등 arm64 전용)
     runtimeOnly("io.netty:netty-resolver-dns-native-macos:4.1.112.Final:osx-aarch_64")
 
-    // PostgreSQL 드라이버 + R2DBC 드라이버
     runtimeOnly("org.postgresql:postgresql")
     runtimeOnly("org.postgresql:r2dbc-postgresql")
 

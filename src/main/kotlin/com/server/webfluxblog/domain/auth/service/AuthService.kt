@@ -4,6 +4,7 @@ import com.server.webfluxblog.domain.auth.dto.request.LoginRequest
 import com.server.webfluxblog.domain.auth.dto.request.SignUpRequest
 import com.server.webfluxblog.domain.auth.error.AuthError
 import com.server.webfluxblog.domain.auth.repository.RefreshTokenRepository
+import com.server.webfluxblog.domain.notification.service.NotificationService
 import com.server.webfluxblog.domain.user.domain.entity.UserEntity
 import com.server.webfluxblog.domain.user.domain.enums.UserRole
 import com.server.webfluxblog.domain.user.repository.UserRepository
@@ -19,13 +20,14 @@ class AuthService(
     private val userRepository: UserRepository,
     private val refreshTokenRepository: RefreshTokenRepository,
     private val jwtProvider: JwtProvider,
-    private val encoder: PasswordEncoder
+    private val encoder: PasswordEncoder,
+    private val notificationService: NotificationService
 ) {
     suspend fun signup(request: SignUpRequest) {
         if (userRepository.existsByEmail(request.email)) {
             throw CustomException(AuthError.EMAIL_ALREADY_IN_USE)
         } else {
-            userRepository.save(
+            val user = userRepository.save(
                 UserEntity(
                     email = request.email,
                     role = UserRole.ROLE_USER,
@@ -33,6 +35,7 @@ class AuthService(
                     password =  encoder.encode(request.password)
                 )
             )
+            notificationService.notifyUser(user.id!!, "회원가입 ㅊㅊ ㅎㅇ")
         }
     }
 

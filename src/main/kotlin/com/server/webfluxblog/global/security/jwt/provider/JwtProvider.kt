@@ -6,7 +6,7 @@ import com.server.webfluxblog.domain.user.domain.entity.UserEntity
 import com.server.webfluxblog.domain.user.repository.UserRepository
 import com.server.webfluxblog.global.exception.CustomException
 import com.server.webfluxblog.global.security.jwt.property.JwtProperties
-import com.server.webfluxblog.global.security.jwt.type.JwtType
+import com.server.webfluxblog.global.security.jwt.enums.JwtType
 import io.jsonwebtoken.Jwts
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import java.nio.charset.StandardCharsets
