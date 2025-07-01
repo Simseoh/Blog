@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: WebfluxBlog
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/blog
+    username: root
+    password: 12345678
+  sql:
+    init:
+      mode: always
+  datasource:
+    driver-class-name: org.postgresql.Driver
+  data:
+    redis:
+      host: localhost
+      port: 6379
+server:
+  port: 8080
+
+jwt:
+  secret-key: J6QoDM/xzhD7W9HmI95pfUV6OiCMdNbRpE6d8WzJ4mrvB4/3sjjZ//OJbmlaDqWien3SFUslVnazij9MBxsBMw==
+  access-token-expiration: 172800000
+  refresh-token-expiration: 604800000
