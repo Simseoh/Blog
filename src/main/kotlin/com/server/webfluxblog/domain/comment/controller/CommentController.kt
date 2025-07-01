@@ -9,16 +9,15 @@ import kotlinx.coroutines.flow.Flow
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/comments")
 @Tag(name = "Comment")
 class CommentController(
     val commentService: CommentService
 ) {
     @Operation(summary = "댓글 게시")
-    @PostMapping
+    @PostMapping("/comments")
     suspend fun addComment(@RequestBody request : CommentRequest): CommentEntity = commentService.addComment(request)
 
     @Operation(summary = "게시물 댓글 조회")
-    @GetMapping("/{postId}")
+    @GetMapping("/posts/{postId}/comments")
     fun getComments(@PathVariable postId: Long): Flow<CommentEntity> = commentService.getComments(postId)
 }
