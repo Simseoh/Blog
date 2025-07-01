@@ -28,11 +28,13 @@ class SecurityConfig {
 
     @Bean
     fun objectMapper(): ObjectMapper {
-        return ObjectMapper().apply {
+        return ObjectMapper()
+            .apply {
             registerModule(JavaTimeModule())
             disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
             disable(SerializationFeature.FAIL_ON_EMPTY_BEANS)
-        }
+            }
+            .registerModule(KotlinModule.Builder().build())
     }
 
     @Bean

@@ -5,7 +5,9 @@ import com.server.webfluxblog.domain.auth.dto.request.SignUpRequest
 import com.server.webfluxblog.domain.auth.service.AuthService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -17,11 +19,11 @@ class AuthController(
 ) {
     @Operation(summary = "회원가입")
     @PostMapping("/signup")
-    suspend fun signUp(request: SignUpRequest) = authService.signup(request)
+    suspend fun signUp(@RequestBody @Valid request: SignUpRequest) = authService.signup(request)
 
     @Operation(summary = "로그인")
     @PostMapping("/login")
-    suspend fun login(request: LoginRequest) = authService.login(request)
+    suspend fun login(@RequestBody @Valid request: LoginRequest) = authService.login(request)
 
 
 }

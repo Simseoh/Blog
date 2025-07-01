@@ -46,7 +46,8 @@ dependencies {
 
     // PostgreSQL 드라이버 + R2DBC 드라이버
     runtimeOnly("org.postgresql:postgresql")
-    implementation("io.r2dbc:r2dbc-postgresql:0.8.13.RELEASE")
+    runtimeOnly("org.postgresql:r2dbc-postgresql")
+
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")

@@ -6,7 +6,7 @@ import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDateTime
 
-@Table(name = "post")
+@Table(name = "posts")
 data class PostEntity(
     @Id
     val id: Long? = null,
