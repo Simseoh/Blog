@@ -4,9 +4,9 @@ import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
 
 data class LoginRequest(
-    @field:Email(message = "not email form")
-    @field:NotBlank(message = "email required")
+    @Email(message = "not email form")
+    @NotBlank(message = "email required")
     val email: String,
-    @field:NotBlank(message = "password required")
+    @NotBlank(message = "password required")
     val password: String
 )

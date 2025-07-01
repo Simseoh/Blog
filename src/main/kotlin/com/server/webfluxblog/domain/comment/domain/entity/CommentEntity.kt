@@ -1,10 +1,12 @@
 package com.server.webfluxblog.domain.comment.domain.entity
 
+import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.Id
+import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDateTime
 
-@Table(name = "comment")
+@Table(name = "comments")
 data class CommentEntity(
     @Id
     val id: Long? = null,

@@ -11,12 +11,13 @@ CREATE TABLE IF NOT EXISTS users (
 
 
 CREATE TABLE IF NOT EXISTS posts (
-                       id SERIAL PRIMARY KEY,
-                       title VARCHAR(200) NOT NULL,
-                       content TEXT NOT NULL,
-                       user_id INTEGER REFERENCES users(id),
-                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(200) NOT NULL,
+    content TEXT NOT NULL,
+    user_id INTEGER REFERENCES users(id),
+    like_count INTEGER,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS comments (
