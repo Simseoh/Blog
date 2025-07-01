@@ -1,10 +1,5 @@
 package com.server.webfluxblog.domain.post.controller
 
-import com.server.webfluxblog.domain.announcement.service.AnnouncementService
-import com.server.webfluxblog.domain.comment.domain.entity.CommentEntity
-import com.server.webfluxblog.domain.comment.repository.CommentRepository
-import com.server.webfluxblog.domain.comment.service.CommentService
-import com.server.webfluxblog.domain.like.service.LikeService
 import com.server.webfluxblog.domain.post.domain.entity.PostEntity
 import com.server.webfluxblog.domain.post.dto.request.CreatePostRequest
 import com.server.webfluxblog.domain.post.service.PostService
@@ -18,11 +13,7 @@ import java.security.Principal
 @RestController
 @RequestMapping("/posts")
 @Tag(name = "Post")
-class PostController(
-    private val postService: PostService,
-    private val commentService: CommentService,
-    private val likeService: LikeService,
-    ) {
+class PostController(private val postService: PostService) {
 
     @Operation(summary = "게시물 게시")
     @PostMapping
@@ -45,13 +36,4 @@ class PostController(
     @Operation(summary = "피드 조회")
     @GetMapping("/feed")
     fun getFeed(): Flow<PostEntity>? = postService.getFeed()
-
-    @Operation(summary = "게시물 댓글 조회")
-    @GetMapping("/{postId}/comments")
-    fun getComments(@PathVariable postId: Long): Flow<CommentEntity> = commentService.getComments(postId)
-
-    @Operation(summary = "게시물 좋아요 게시")
-    @PostMapping("/{postId}/like")
-    suspend fun toggleLike(@PathVariable postId: Long): Boolean =
-        likeService.toggleLike(postId)
 }
