@@ -15,10 +15,10 @@ class CommentController(
     val commentService: CommentService
 ) {
     @Operation(summary = "댓글 게시")
-    @PostMapping("/comments")
+    @PostMapping
     suspend fun addComment(@RequestBody request : CommentRequest): CommentEntity = commentService.addComment(request)
 
     @Operation(summary = "게시물 댓글 조회")
-    @GetMapping("/posts/{postId}/comments")
+    @GetMapping("/{postId}")
     fun getComments(@PathVariable postId: Long): Flow<CommentEntity> = commentService.getComments(postId)
 }

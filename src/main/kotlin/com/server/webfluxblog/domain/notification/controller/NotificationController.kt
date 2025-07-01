@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 import java.security.Principal
 
 @RestController
-@RequestMapping("notification")
+@RequestMapping("/notification")
 @Tag(name = "Notification")
 class NotificationController(
     private val notificationService: NotificationService

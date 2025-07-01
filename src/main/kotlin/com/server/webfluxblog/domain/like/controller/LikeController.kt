@@ -16,7 +16,7 @@ class LikeController(
     private val likeService: LikeService
 ) {
     @Operation(summary = "게시물 좋아요 게시")
-    @PostMapping("/posts/{postId}/like")
+    @PostMapping("/{postId}")
     suspend fun toggleLike(@PathVariable postId: Long): Boolean =
         likeService.toggleLike(postId)
 }
