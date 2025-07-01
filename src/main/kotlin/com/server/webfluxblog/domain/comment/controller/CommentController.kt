@@ -16,8 +16,4 @@ class CommentController(
     @Operation(summary = "댓글 게시")
     @PostMapping("/comments")
     suspend fun addComment(@RequestBody request : CommentRequest): CommentEntity = commentService.addComment(request)
-
-    @Operation(summary = "게시물 댓글 조회")
-    @GetMapping("/posts/{postId}/comments")
-    fun getComments(@PathVariable postId: Long): Flow<CommentEntity> = commentService.getComments(postId)
 }
