@@ -10,9 +10,9 @@ import java.time.LocalDateTime
 
 @Table(name = "users")
 data class UserEntity(
-    @field:Id
+    @Id
     val id: Long? = null,
-    @field:Email
+    @Email
     val email : String,
     val role : UserRole,
     val username: String,

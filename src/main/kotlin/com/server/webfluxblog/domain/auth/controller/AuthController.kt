@@ -25,5 +25,4 @@ class AuthController(
     @PostMapping("/login")
     suspend fun login(@RequestBody @Valid request: LoginRequest) = authService.login(request)
 
-
 }

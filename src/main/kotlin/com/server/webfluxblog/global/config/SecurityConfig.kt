@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import com.server.webfluxblog.global.security.jwt.handle.CustomAuthenticationEntryPoint
 import com.server.webfluxblog.global.security.jwt.filter.JwtAuthenticationWebFilter
 import org.springframework.context.annotation.Bean
@@ -34,7 +35,7 @@ class SecurityConfig {
             disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
             disable(SerializationFeature.FAIL_ON_EMPTY_BEANS)
             }
-            .registerModule(KotlinModule.Builder().build())
+            .registerKotlinModule()
     }
 
     @Bean

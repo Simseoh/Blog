@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository
 interface UserRepository : CoroutineCrudRepository<UserEntity, Long> {
     suspend fun findByEmail(email: String): UserEntity?
     suspend fun findByUsername(username: String): UserEntity?
+    suspend fun existsByEmail(email: String): Boolean
 }
 
 

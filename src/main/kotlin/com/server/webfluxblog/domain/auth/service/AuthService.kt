@@ -22,14 +22,18 @@ class AuthService(
     private val encoder: PasswordEncoder
 ) {
     suspend fun signup(request: SignUpRequest) {
-        userRepository.save(
-            UserEntity(
-                email = request.email,
-                role = UserRole.ROLE_USER,
-                username =  request.username ,
-                password =  encoder.encode(request.password)
+        if (userRepository.existsByEmail(request.email)) {
+            throw CustomException(AuthError.EMAIL_ALREADY_IN_USE)
+        } else {
+            userRepository.save(
+                UserEntity(
+                    email = request.email,
+                    role = UserRole.ROLE_USER,
+                    username =  request.username ,
+                    password =  encoder.encode(request.password)
+                )
             )
-        )
+        }
     }
 
     suspend fun login(request: LoginRequest) : Jwt {
