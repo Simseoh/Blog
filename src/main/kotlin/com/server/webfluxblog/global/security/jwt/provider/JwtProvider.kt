@@ -2,6 +2,7 @@ package com.server.webfluxblog.global.security.jwt.provider
 
 import com.server.webfluxblog.domain.auth.error.PostError
 import com.server.webfluxblog.domain.auth.domain.repository.RefreshTokenRepository
+import com.server.webfluxblog.domain.auth.error.AuthError
 import com.server.webfluxblog.domain.user.domain.entity.UserEntity
 import com.server.webfluxblog.domain.user.domain.repository.UserRepository
 import com.server.webfluxblog.global.exception.CustomException
@@ -22,8 +23,6 @@ import reactor.core.publisher.Mono
 @Component
 class JwtProvider(
     private val jwtProperties: JwtProperties,
-    private val refreshTokenRepository: RefreshTokenRepository,
-    private val userRepository: UserRepository,
     private val userDetailsService: ReactiveUserDetailsService,
 ) {
     private val key: SecretKey by lazy {
@@ -74,7 +73,7 @@ class JwtProvider(
     fun getAuthentication(token: String): Mono<Authentication> {
         val userId = getUserId(token)
         return userDetailsService.findByUsername(userId)
-            .switchIfEmpty(Mono.error(CustomException(PostError.USER_NOT_FOUND)))
+            .switchIfEmpty(Mono.error(CustomException(AuthError.USER_NOT_FOUND)))
             .map { userDetails ->
                 UsernamePasswordAuthenticationToken(userDetails, "", userDetails.authorities)
             }
