@@ -16,9 +16,9 @@ class CommentServiceImpl(
     private val commentRepository: CommentRepository,
     private val securityHolder: SecurityHolder
 ) : CommentService {
-    override suspend fun addComment(request: CommentRequest): CommentEntity {
+    override suspend fun addComment(postId: Long, request: CommentRequest): CommentEntity {
         var comment: CommentEntity = CommentEntity(
-            postId = request.postId,
+            postId = postId,
             userId = securityHolder.getPrincipal()?.id!!,
             content = request.content
         )
