@@ -13,5 +13,6 @@ data class CommentEntity(
     val postId: Long,
     val userId: Long,
     val content: String,
+    @CreatedDate
     val createdAt: LocalDateTime = LocalDateTime.now()
 )

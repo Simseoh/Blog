@@ -1,4 +1,4 @@
-package com.server.webfluxblog.domain.notification.repository
+package com.server.webfluxblog.domain.notification.domain.repository
 
 import com.server.webfluxblog.domain.notification.domain.entity.NotificationEntity
 import kotlinx.coroutines.flow.Flow

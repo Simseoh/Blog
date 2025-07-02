@@ -1,7 +1,7 @@
 package com.server.webfluxblog.global.security.holder.impl
 
 import com.server.webfluxblog.domain.user.domain.entity.UserEntity
-import com.server.webfluxblog.domain.user.repository.UserRepository
+import com.server.webfluxblog.domain.user.domain.repository.UserRepository
 import com.server.webfluxblog.global.security.holder.SecurityHolder
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.springframework.security.core.context.ReactiveSecurityContextHolder

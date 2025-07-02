@@ -16,7 +16,6 @@ class ReactiveRedisConfig(
     @Value("\${spring.data.redis.host}") private val host: String,
     @Value("\${spring.data.redis.port}") private val port: Int,
 ) {
-    // Reactive Redis 구성 추가
     @Bean
     @Primary
     fun reactiveRedisConnectionFactory(): ReactiveRedisConnectionFactory {

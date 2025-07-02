@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.RestController
 import java.security.Principal
 
 @RestController
-@RequestMapping("/posts")
+@RequestMapping("/posts/{postId}/likes")
 @Tag(name = "Like")
 class LikeController(
     private val likeService: LikeService
 ) {
-    @Operation(summary = "게시물 좋아요 게시")
-    @PostMapping("/{postId}/likes")
-    suspend fun toggleLike(@PathVariable postId: Long): Boolean =
-        likeService.toggleLike(postId)
+    @Operation(summary = "게시물 좋아요 게시 / 삭제")
+    @PostMapping
+    suspend fun toggleLike(@PathVariable postId: Long): Boolean = likeService.toggleLike(postId)
 }

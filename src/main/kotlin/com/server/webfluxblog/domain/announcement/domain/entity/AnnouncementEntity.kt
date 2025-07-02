@@ -11,5 +11,6 @@ data class AnnouncementEntity(
     val id: Long? = null,
     val title: String,
     val content: String,
+    @CreatedDate
     val createdAt: LocalDateTime = LocalDateTime.now()
 )

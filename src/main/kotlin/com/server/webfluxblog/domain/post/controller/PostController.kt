@@ -2,6 +2,7 @@ package com.server.webfluxblog.domain.post.controller
 
 import com.server.webfluxblog.domain.post.domain.entity.PostEntity
 import com.server.webfluxblog.domain.post.dto.request.CreatePostRequest
+import com.server.webfluxblog.domain.post.dto.response.PostResponse
 import com.server.webfluxblog.domain.post.service.PostService
 import com.server.webfluxblog.domain.post.service.impl.PostServiceImpl
 import io.swagger.v3.oas.annotations.Operation
@@ -26,17 +27,17 @@ class PostController(
 
     @Operation(summary = "게시물 전체 조회")
     @GetMapping("/recent")
-    fun getRecentPosts(): Flow<PostEntity>? = postService.getRecentPosts()
+    fun getRecentPosts(): Flow<PostResponse> = postService.getRecentPosts()
 
     @Operation(summary = "트렌딩게시물 조회")
     @GetMapping("/trending")
-    suspend fun getTrendingPosts(): Flow<PostEntity> = postService.getTrendingPosts()
+    suspend fun getTrendingPosts(): Flow<PostResponse> = postService.getTrendingPosts()
 
     @Operation(summary = "게시물 검색")
     @GetMapping("/search")
-    fun searchPosts(@RequestParam query: String): Flow<PostEntity> = postService.searchPosts(query)
+    fun searchPosts(@RequestParam query: String): Flow<PostResponse> = postService.searchPosts(query)
 
     @Operation(summary = "피드 조회")
     @GetMapping("/feed")
-    fun getFeed(): Flow<PostEntity>? = postService.getFeed()
+    fun getFeed(): Flow<PostResponse> = postService.getFeed()
 }

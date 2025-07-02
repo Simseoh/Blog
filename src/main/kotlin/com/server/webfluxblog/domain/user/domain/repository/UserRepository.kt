@@ -1,4 +1,4 @@
-package com.server.webfluxblog.domain.user.repository
+package com.server.webfluxblog.domain.user.domain.repository
 
 import com.server.webfluxblog.domain.user.domain.entity.UserEntity
 import org.springframework.data.repository.kotlin.CoroutineCrudRepository

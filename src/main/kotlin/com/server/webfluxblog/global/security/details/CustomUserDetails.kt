@@ -1,4 +1,4 @@
-package com.server.webfluxblog.global.details
+package com.server.webfluxblog.global.security.details
 
 import com.server.webfluxblog.domain.user.domain.entity.UserEntity
 import org.springframework.security.core.GrantedAuthority

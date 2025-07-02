@@ -12,7 +12,6 @@ import java.time.LocalDateTime
 data class UserEntity(
     @Id
     val id: Long? = null,
-    @Email
     val email : String,
     val role : UserRole,
     val username: String,

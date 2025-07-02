@@ -1,4 +1,4 @@
-package com.server.webfluxblog.domain.announcement.repository
+package com.server.webfluxblog.domain.announcement.domain.repository
 
 import com.server.webfluxblog.domain.announcement.domain.entity.AnnouncementEntity
 import kotlinx.coroutines.flow.Flow

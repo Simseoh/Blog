@@ -3,6 +3,7 @@ package com.server.webfluxblog.domain.auth.controller
 import com.server.webfluxblog.domain.auth.dto.request.LoginRequest
 import com.server.webfluxblog.domain.auth.dto.request.SignUpRequest
 import com.server.webfluxblog.domain.auth.service.AuthService
+import com.server.webfluxblog.global.security.jwt.provider.Jwt
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
@@ -23,6 +24,6 @@ class AuthController(
 
     @Operation(summary = "로그인")
     @PostMapping("/login")
-    suspend fun login(@RequestBody @Valid request: LoginRequest) = authService.login(request)
+    suspend fun login(@RequestBody @Valid request: LoginRequest) : Jwt = authService.login(request)
 
 }

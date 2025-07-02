@@ -1,4 +1,4 @@
-package com.server.webfluxblog.domain.comment.repository
+package com.server.webfluxblog.domain.comment.domain.repository
 
 import com.server.webfluxblog.domain.comment.domain.entity.CommentEntity
 import kotlinx.coroutines.flow.Flow

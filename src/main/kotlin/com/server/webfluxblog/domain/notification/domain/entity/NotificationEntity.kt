@@ -1,5 +1,6 @@
 package com.server.webfluxblog.domain.notification.domain.entity
 
+import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.Id
 import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDateTime
@@ -11,5 +12,6 @@ data class NotificationEntity(
     val userId: Long,
     val message: String,
     val isRead: Boolean = false,
+    @CreatedDate
     val createdAt: LocalDateTime = LocalDateTime.now()
 )

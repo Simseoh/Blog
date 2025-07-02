@@ -1,6 +1,6 @@
-package com.server.webfluxblog.global.details
+package com.server.webfluxblog.global.security.details
 
-import com.server.webfluxblog.domain.user.repository.UserRepository
+import com.server.webfluxblog.domain.user.domain.repository.UserRepository
 import kotlinx.coroutines.reactor.mono
 import org.springframework.security.core.userdetails.ReactiveUserDetailsService
 import org.springframework.security.core.userdetails.UserDetails

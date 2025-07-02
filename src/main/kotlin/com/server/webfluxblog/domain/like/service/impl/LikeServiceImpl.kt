@@ -1,12 +1,11 @@
 package com.server.webfluxblog.domain.like.service.impl
 
 import com.server.webfluxblog.domain.like.domain.entity.LikeEntity
-import com.server.webfluxblog.domain.like.repository.LikeRepository
+import com.server.webfluxblog.domain.like.domain.repository.LikeRepository
 import com.server.webfluxblog.domain.like.service.LikeService
 import com.server.webfluxblog.domain.notification.domain.entity.NotificationEntity
-import com.server.webfluxblog.domain.notification.repository.NotificationRepository
-import com.server.webfluxblog.domain.notification.service.NotificationService
-import com.server.webfluxblog.domain.post.repository.PostRepository
+import com.server.webfluxblog.domain.notification.domain.repository.NotificationRepository
+import com.server.webfluxblog.domain.post.domain.repository.PostRepository
 import com.server.webfluxblog.global.security.holder.SecurityHolder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

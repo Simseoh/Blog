@@ -1,4 +1,4 @@
-package com.server.webfluxblog.domain.like.repository
+package com.server.webfluxblog.domain.like.domain.repository
 
 import com.server.webfluxblog.domain.like.domain.entity.LikeEntity
 import kotlinx.coroutines.flow.Flow
