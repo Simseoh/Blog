@@ -11,6 +11,7 @@ data class LikeEntity(
     val id: Long? = null,
     val postId: Long,
     val userId: Long,
+
     @CreatedDate
     val createdAt: LocalDateTime = LocalDateTime.now()
 )

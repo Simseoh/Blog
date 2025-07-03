@@ -1,10 +1,10 @@
 package com.server.webfluxblog.domain.auth.domain.repository
 
-import reactor.core.publisher.Mono
+import kotlinx.coroutines.flow.Flow
 
 interface RefreshTokenRepository {
-    fun save(email: String, refreshToken: String): Mono<Void>
-    fun findByEmail(email: String): Mono<String>
-    fun deleteByEmail(email: String): Mono<Boolean>
-    fun existsByEmail(email: String): Mono<Boolean>
+    fun save(email: String, refreshToken: String): Flow<Unit>
+    fun findByEmail(email: String): Flow<String>
+    fun deleteByEmail(email: String): Flow<Boolean>
+    fun existsByEmail(email: String): Flow<Boolean>
 }

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface AnnouncementRepository : CoroutineCrudRepository<AnnouncementEntity, Long> {
-    fun findAllByOrderByCreatedAtDesc(): Flow<AnnouncementEntity>?
+    fun findAllByOrderByCreatedAtDesc(): Flow<AnnouncementEntity>
 }

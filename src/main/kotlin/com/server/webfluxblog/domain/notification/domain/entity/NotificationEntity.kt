@@ -12,6 +12,7 @@ data class NotificationEntity(
     val userId: Long,
     val message: String,
     val isRead: Boolean = false,
+
     @CreatedDate
     val createdAt: LocalDateTime = LocalDateTime.now()
 )

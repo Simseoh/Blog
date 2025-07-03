@@ -1,15 +1,10 @@
 package com.server.webfluxblog.domain.post.controller
 
-import com.server.webfluxblog.domain.post.domain.entity.PostEntity
 import com.server.webfluxblog.domain.post.dto.request.CreatePostRequest
-import com.server.webfluxblog.domain.post.dto.response.PostResponse
 import com.server.webfluxblog.domain.post.service.PostService
-import com.server.webfluxblog.domain.post.service.impl.PostServiceImpl
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
-import kotlinx.coroutines.flow.Flow
 import org.springframework.web.bind.annotation.*
-import java.security.Principal
 
 @RestController
 @RequestMapping("/posts")
@@ -27,17 +22,17 @@ class PostController(
 
     @Operation(summary = "게시물 전체 조회")
     @GetMapping("/recent")
-    fun getRecentPosts(): Flow<PostResponse> = postService.getRecentPosts()
+    fun getRecentPosts() = postService.getRecentPosts()
 
     @Operation(summary = "트렌딩게시물 조회")
     @GetMapping("/trending")
-    suspend fun getTrendingPosts(): Flow<PostResponse> = postService.getTrendingPosts()
+    suspend fun getTrendingPosts() = postService.getTrendingPosts()
 
     @Operation(summary = "게시물 검색")
     @GetMapping("/search")
-    fun searchPosts(@RequestParam query: String): Flow<PostResponse> = postService.searchPosts(query)
+    fun searchPosts(@RequestParam query: String) = postService.searchPosts(query)
 
     @Operation(summary = "피드 조회")
     @GetMapping("/feed")
-    fun getFeed(): Flow<PostResponse> = postService.getFeed()
+    fun getFeeds() = postService.getFeeds()
 }

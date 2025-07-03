@@ -17,8 +17,10 @@ data class UserEntity(
     val username: String,
     val password: String,
     val lastLoginDate: LocalDateTime? = null,
+
     @CreatedDate
     val createdAt: LocalDateTime = LocalDateTime.now(),
+
     @LastModifiedDate
     val updatedAt: LocalDateTime = LocalDateTime.now()
 )

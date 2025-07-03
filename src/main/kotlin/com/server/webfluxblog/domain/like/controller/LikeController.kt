@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.security.Principal
 
 @RestController
 @RequestMapping("/posts/{postId}/likes")
@@ -17,5 +16,5 @@ class LikeController(
 ) {
     @Operation(summary = "게시물 좋아요 게시 / 삭제")
     @PostMapping
-    suspend fun toggleLike(@PathVariable postId: Long): Boolean = likeService.toggleLike(postId)
+    suspend fun toggleLike(@PathVariable postId: Long) = likeService.toggleLike(postId)
 }

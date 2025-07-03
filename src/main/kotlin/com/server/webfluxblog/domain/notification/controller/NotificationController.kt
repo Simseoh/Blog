@@ -18,6 +18,6 @@ class NotificationController(
 ) {
     @Operation(summary = "알림 수신")
     @GetMapping
-    suspend fun getNotifications(principal: Principal): List<NotificationResponse>? =
+    suspend fun getNotifications(principal: Principal) =
         notificationService.getNotifications().toList()
 }

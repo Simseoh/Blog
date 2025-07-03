@@ -1,11 +1,9 @@
 package com.server.webfluxblog.domain.announcement.controller
 
 import com.server.webfluxblog.domain.announcement.dto.request.AnnouncementRequest
-import com.server.webfluxblog.domain.announcement.dto.response.AnnouncementResponse
 import com.server.webfluxblog.domain.announcement.service.AnnouncementService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
-import kotlinx.coroutines.flow.Flow
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -16,9 +14,9 @@ class AnnouncementController(
 ) {
     @Operation(summary = "공지사항 게시")
     @PostMapping
-    suspend fun createAnnouncement(@RequestBody request: AnnouncementRequest): AnnouncementResponse = announcementService.createAnnouncement(request)
+    suspend fun createAnnouncement(@RequestBody request: AnnouncementRequest) = announcementService.createAnnouncement(request)
 
     @Operation(summary = "공지사항 조회")
     @GetMapping
-    fun getAnnouncements(): Flow<AnnouncementResponse>? = announcementService.getAnnouncements()
+    fun getAnnouncements() = announcementService.getAnnouncements()
 }
