@@ -20,31 +20,29 @@ class AuthService(
     private val userRepository: UserRepository,
     private val refreshTokenRepository: RefreshTokenRepository,
     private val jwtProvider: JwtProvider,
-    private val encoder: PasswordEncoder,
-    private val notificationService: NotificationService
+    private val passwordEncoder: PasswordEncoder,
 ) {
     suspend fun signup(request: SignUpRequest) {
         if (userRepository.existsByEmail(request.email)) {
             throw CustomException(AuthError.EMAIL_ALREADY_IN_USE)
         }
-        val user = userRepository.save(
+        userRepository.save(
             UserEntity(
                 email = request.email,
                 role = UserRole.ROLE_USER,
                 username =  request.username ,
-                password =  encoder.encode(request.password)
+                password =  passwordEncoder.encode(request.password)
             )
         )
     }
 
     suspend fun login(request: LoginRequest) : Jwt {
-        val user:UserEntity = userRepository.findByEmail(request.email)
-            ?: throw CustomException(AuthError.USER_NOT_FOUND)
-        if ( !encoder.matches(request.password, user.password) ) throw CustomException(AuthError.PASSWORD_WRONG)
-        val tokens : Jwt = jwtProvider.generateToken(user)
-
+        val user = userRepository.findByEmail(request.email) ?: throw CustomException(AuthError.USER_NOT_FOUND)
+        if (!passwordEncoder.matches(request.password, user.password)) throw CustomException(AuthError.PASSWORD_WRONG)
+        val tokens = jwtProvider.generateToken(user)
         userRepository.save(user.copy(lastLoginDate = LocalDateTime.now()))
         refreshTokenRepository.save(user.email, tokens.refreshToken)
+
         return tokens
     }
 }

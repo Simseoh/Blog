@@ -64,10 +64,30 @@ class JwtProvider(
     }
 
     fun generateToken(user: UserEntity): Jwt {
-        val accessToken = generateAccessToken(user)
-        val refreshToken = generateRefreshToken(user)
+        val now = Date()
+        val accessToken = Jwts.builder()
+            .header()
+            .type(JwtType.ACCESS.name)
+            .and()
+            .subject(user.email)
+            .signWith(key)
+            .setIssuedAt(now)
+            .setExpiration(Date(now.time + jwtProperties.accessTokenExpiration))
+            .compact()
+        val refreshToken = Jwts.builder()
+            .header()
+            .type(JwtType.REFRESH.name)
+            .and()
+            .subject(user.email)
+            .signWith(key)
+            .setIssuedAt(now)
+            .setExpiration(Date(now.time + jwtProperties.accessTokenExpiration))
+            .compact()
 
-        return Jwt(accessToken, refreshToken)
+        return Jwt(
+            accessToken = accessToken,
+            refreshToken = refreshToken
+        )
     }
 
     fun getAuthentication(token: String): Mono<Authentication> {
@@ -84,32 +104,6 @@ class JwtProvider(
         return if (token != null && token.startsWith("Bearer ")) {
             token.substring(7)
         } else null
-    }
-
-    private fun generateAccessToken(user: UserEntity): String {
-        val now = Date()
-        return Jwts.builder()
-            .header()
-            .type(JwtType.ACCESS.name)
-            .and()
-            .subject(user.email)
-            .signWith(key)
-            .setIssuedAt(now)
-            .setExpiration(Date(now.time + jwtProperties.accessTokenExpiration))
-            .compact()
-    }
-
-    private fun generateRefreshToken(user: UserEntity): String {
-        val now = Date()
-        return Jwts.builder()
-            .header()
-            .type(JwtType.REFRESH.name)
-            .and()
-            .subject(user.email)
-            .signWith(key)
-            .setIssuedAt(now)
-            .setExpiration(Date(now.time + jwtProperties.accessTokenExpiration))
-            .compact()
     }
 }
 
