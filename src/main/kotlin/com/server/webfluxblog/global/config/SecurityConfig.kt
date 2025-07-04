@@ -1,11 +1,5 @@
 package com.server.webfluxblog.global.config
 
-import com.server.webfluxblog.global.security.jwt.handle.CustomAuthenticationDenyHandle
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.SerializationFeature
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import com.server.webfluxblog.global.security.jwt.handle.CustomAuthenticationEntryPoint
 import com.server.webfluxblog.global.security.jwt.filter.JwtAuthenticationWebFilter
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -22,67 +16,41 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource
 
 @Configuration
 @EnableWebFluxSecurity
-class SecurityConfig {
-
-    @Bean
-    fun objectMapper(): ObjectMapper {
-        return ObjectMapper()
-            .apply {
-            registerModule(JavaTimeModule())
-            disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-            disable(SerializationFeature.FAIL_ON_EMPTY_BEANS)
-            }
-            .registerKotlinModule()
-    }
-
+class SecurityConfig(
+    private val jwtAuthenticationWebFilter: JwtAuthenticationWebFilter
+) {
     @Bean
     fun passwordEncoder(): PasswordEncoder = BCryptPasswordEncoder()
 
     @Bean
-    fun customAuthenticationDenyHandle(): CustomAuthenticationDenyHandle {
-        return CustomAuthenticationDenyHandle()
-    }
-
-    @Bean
     fun securityWebFilterChain(
         http: ServerHttpSecurity,
-        jwtAuthenticationWebFilter: JwtAuthenticationWebFilter,
-        customAuthenticationEntryPoint: CustomAuthenticationEntryPoint,
-    ): SecurityWebFilterChain {
-        return http
+    ): SecurityWebFilterChain = http
             .csrf { it.disable() }
             .httpBasic { it.disable() }
             .formLogin { it.disable() }
             .logout { it.disable() }
             .cors { it.configurationSource(corsConfigurationSource()) }
 
-            .exceptionHandling {
-                it.authenticationEntryPoint (customAuthenticationEntryPoint)
-                it.accessDeniedHandler (customAuthenticationDenyHandle())
-            }
-
             .authorizeExchange {
                 it
-                    .pathMatchers(HttpMethod.GET, "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/webjars/**", "/swagger-resources/**").permitAll()
-                    .pathMatchers(HttpMethod.GET, "/public/**").permitAll() // 필요시 수정
+                    .pathMatchers(HttpMethod.GET, "/swagger-ui/**", "/v3/api-docs/**").permitAll()
 
                     .pathMatchers(HttpMethod.POST, "/auth/signup", "/auth/login").permitAll()
 
                     .anyExchange().authenticated()
-
             }
 
             .addFilterAt(jwtAuthenticationWebFilter, SecurityWebFiltersOrder.AUTHENTICATION)
             .build()
-    }
 
-    @Bean
     fun corsConfigurationSource(): CorsConfigurationSource {
         val configuration = CorsConfiguration()
-        configuration.addAllowedOrigin("*")
-        configuration.addAllowedMethod("*")
-        configuration.addAllowedHeader("*")
+        configuration.allowedOriginPatterns = listOf("*")
+        configuration.allowedMethods = listOf("*")
+        configuration.allowedHeaders = listOf("*")
         configuration.allowCredentials = true
+        configuration.maxAge = 3600
 
         val source = UrlBasedCorsConfigurationSource()
         source.registerCorsConfiguration("/**", configuration)

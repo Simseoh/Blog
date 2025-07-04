@@ -23,24 +23,26 @@ class AuthService(
     private val passwordEncoder: PasswordEncoder,
 ) {
     suspend fun signup(request: SignUpRequest) {
-        if (userRepository.existsByEmail(request.email)) {
+        if (userRepository.existsByEmail(request.email))
             throw CustomException(AuthError.EMAIL_ALREADY_IN_USE)
-        }
+
         userRepository.save(
             UserEntity(
                 email = request.email,
-                role = UserRole.ROLE_USER,
-                username =  request.username ,
-                password =  passwordEncoder.encode(request.password)
+                username = request.username ,
+                password = passwordEncoder.encode(request.password)
             )
         )
     }
 
-    suspend fun login(request: LoginRequest) : Jwt {
+    suspend fun login(request: LoginRequest): Jwt {
         val user = userRepository.findByEmail(request.email) ?: throw CustomException(AuthError.USER_NOT_FOUND)
+
         if (!passwordEncoder.matches(request.password, user.password)) throw CustomException(AuthError.PASSWORD_WRONG)
+
         val tokens = jwtProvider.generateToken(user)
-        userRepository.save(user.copy(lastLoginDate = LocalDateTime.now()))
+
+        userRepository.save(user.copy(lastLoginAt = LocalDateTime.now()))
         refreshTokenRepository.save(user.email, tokens.refreshToken)
 
         return tokens

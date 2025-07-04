@@ -12,11 +12,11 @@ import java.time.LocalDateTime
 data class UserEntity(
     @Id
     val id: Long? = null,
-    val email : String,
-    val role : UserRole,
+    val email: String,
+    val role: UserRole = UserRole.ROLE_USER,
     val username: String,
     val password: String,
-    val lastLoginDate: LocalDateTime? = null,
+    val lastLoginAt: LocalDateTime? = null,
 
     @CreatedDate
     val createdAt: LocalDateTime = LocalDateTime.now(),

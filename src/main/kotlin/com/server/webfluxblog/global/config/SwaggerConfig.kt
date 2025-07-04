@@ -11,10 +11,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 class SwaggerConfig {
-
     @Bean
-    fun openAPI(): OpenAPI {
-        return OpenAPI()
+    fun openAPI(): OpenAPI = OpenAPI()
             .components(Components())
             .info(apiInfo())
             .servers(
@@ -36,7 +34,6 @@ class SwaggerConfig {
                             .name("Authorization")
                     )
             );
-    }
 
     fun apiInfo() : Info {
         return Info()

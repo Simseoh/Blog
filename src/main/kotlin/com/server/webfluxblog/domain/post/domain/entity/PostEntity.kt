@@ -13,19 +13,11 @@ data class PostEntity(
     val title: String,
     val content: String,
     val userId: Long,
-    var likeCount: Long,
+    val likeCount: Long,
+
     @CreatedDate
     val createdAt: LocalDateTime = LocalDateTime.now(),
+
     @LastModifiedDate
     val updatedAt: LocalDateTime = LocalDateTime.now()
-) {
-    fun addLike() : PostEntity {
-        likeCount += 1L
-        return this
-    }
-
-    fun minusLike() : PostEntity {
-        likeCount -= 1L
-        return this
-    }
-}
+)

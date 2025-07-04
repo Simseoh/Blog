@@ -20,21 +20,21 @@ class LikeService(
     suspend fun toggleLike(postId: Long): Boolean {
         val userId : Long = securityHolder.getPrincipal()?.id!!
         val existingLike = likeRepository.findByPostIdAndUserId(postId, userId)
-        val post = postRepository.findById(postId)
+        val post = postRepository.findById(postId)!!
         return if (existingLike == null) {
             likeRepository.save(LikeEntity(postId = postId, userId = userId))
-            postRepository.save(post?.addLike()!!)
+            postRepository.save(post.copy(likeCount = post.likeCount + 1))
             notifyUser(postId, "Your post received a like!")
             true
         } else {
             likeRepository.delete(existingLike)
-            postRepository.save(post?.minusLike()!!)
+            postRepository.save(post.copy(likeCount = post.likeCount - 1))
             false
         }
     }
 
     suspend fun notifyUser(postId: Long, message: String) {
-        val post = postRepository.findById(postId)
+        val post = postRepository.findById(postId)!!
         notificationRepository.save(NotificationEntity(userId = post.userId, message = message))
     }
 }

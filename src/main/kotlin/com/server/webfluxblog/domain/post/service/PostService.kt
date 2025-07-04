@@ -47,7 +47,7 @@ class PostService(
             .map { it.toResponse() }
     }
 
-    fun getFeeds(): Flow<PostResponse> = postRepository.findAllByOrderByCreatedAtDesc().map { it.toResponse() }
+    fun getFeedPosts(): Flow<PostResponse> = postRepository.findAllByOrderByCreatedAtDesc().map { it.toResponse() }
 
     private fun PostEntity.toResponse() = PostResponse(
         id = id!!,

@@ -34,5 +34,5 @@ class PostController(
 
     @Operation(summary = "피드 조회")
     @GetMapping("/feed")
-    fun getFeeds() = postService.getFeeds()
+    fun getFeedPosts() = postService.getFeedPosts()
 }
