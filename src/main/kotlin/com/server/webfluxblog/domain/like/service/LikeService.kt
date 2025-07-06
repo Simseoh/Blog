@@ -23,12 +23,10 @@ class LikeService(
         val post = postRepository.findById(postId)!!
         return if (existingLike == null) {
             likeRepository.save(LikeEntity(postId = postId, userId = userId))
-            postRepository.save(post.copy(likeCount = post.likeCount + 1))
             notifyUser(postId, "Your post received a like!")
             true
         } else {
             likeRepository.delete(existingLike)
-            postRepository.save(post.copy(likeCount = post.likeCount - 1))
             false
         }
     }
